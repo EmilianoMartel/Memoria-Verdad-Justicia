@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,25 @@ using UnityEngine.UIElements;
 
 public class RandomiseFile : MonoBehaviour
 {
+    [Header("Parameters")]
     [SerializeField] private int _countFiles;
     [SerializeField] private ListSO _dataList;
     [SerializeField] private float _waitForData = 0.5f;
+    [Header("Managers")]
+    [SerializeField] private GameLogic _gameLogic;
     private List<RecordFile> _fileList = new List<RecordFile>();
 
+    public Action<RecordFile> sendFile;
+
+    private void OnEnable()
+    {
+        _gameLogic.newFile += SendFile;
+    }
+
+    private void OnDisable()
+    {
+        _gameLogic.newFile -= SendFile;
+    }
 
     private void Awake()
     {
@@ -74,5 +89,13 @@ public class RandomiseFile : MonoBehaviour
             $"\n{_fileList[i].gender}" +
             $"\n{_fileList[i].politicalPartyName}" +
             $"\n{_fileList[i].background}");
+    }
+
+    private void SendFile(int index)
+    {
+        if (index >= 0 || index <= _fileList.Count)
+        {
+            sendFile?.Invoke(_fileList[index]);
+        }
     }
 }
