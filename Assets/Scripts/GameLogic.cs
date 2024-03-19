@@ -28,4 +28,5 @@ public class GameLogic : MonoBehaviour
         newFile?.Invoke(index);
         index++;
     }
+
 }

@@ -70,6 +70,7 @@ public class RandomiseFile : MonoBehaviour
         int randomIndexLastName = UnityEngine.Random.Range(0, _dataList.lastNames.Count);
         int randomIndexAcronyms = UnityEngine.Random.Range(0, _dataList.acronyms.Count);
         int randomStorie = UnityEngine.Random.Range(0, _dataList.stories.Count);
+        int randomJob = UnityEngine.Random.Range(0, _dataList.jobs.Count);
 
         RecordFile temp = new RecordFile();
         temp.name = _dataList.names[randomIndexName].name;
@@ -77,6 +78,7 @@ public class RandomiseFile : MonoBehaviour
         temp.politicalPartyName = _dataList.acronyms[randomIndexAcronyms].acronym;
         temp.background = _dataList.stories[randomStorie].story;
         temp.gender = _dataList.names[randomIndexName].gender;
+        temp.job = _dataList.jobs[randomJob].job;
         _fileList.Add(temp);
     }
 

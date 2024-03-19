@@ -26,17 +26,24 @@ public class Acronyms
     public string acronym;
 }
 
+public class Jobs
+{
+    public string job;
+}
+
 public class JsonReader : MonoBehaviour
 {
     private List<Names> _namesList;
     private List<LastNames> _lastNamesList;
     private List<Stories> _storiesList;
     private List<Acronyms> _acronymsList;
+    private List<Jobs> _jobsList;
     [Header("Json Files")]
     [SerializeField] private string NAMES_FILE_NAME = "Names.json";
     [SerializeField] private string LAST_NAME_FILE = "LastName.json";
     [SerializeField] private string STORIES_FILE = "Stories.json";
     [SerializeField] private string ACRONYM_FILE = "Acronym.json";
+    [SerializeField] private string JOBS_FILE = "Jobs.json";
     [Header("Data Source")]
     [SerializeField] private ListSO _dataSource;
     private static string _relativeFolder = "Data";
@@ -44,11 +51,7 @@ public class JsonReader : MonoBehaviour
     private string _filePathLastNames;
     private string _filePathStories;
     private string _filePathAcronyms;
-
-    public List<Names> namesList { get { return _namesList; } }
-    public List<LastNames> lastNamesList { get { return _lastNamesList; } }
-    public List<Stories> storiesList { get { return _storiesList; } }
-    public List<Acronyms> acronymsList { get { return _acronymsList; } }
+    private string _filePathJobs;
 
     private void Awake()
     {
@@ -65,6 +68,7 @@ public class JsonReader : MonoBehaviour
         _dataSource.acronyms = _acronymsList;
         _dataSource.stories = _storiesList;
         _dataSource.lastNames = _lastNamesList;
+        _dataSource.jobs = _jobsList;
     }
     
     private void ListReader()
@@ -73,6 +77,7 @@ public class JsonReader : MonoBehaviour
         _filePathLastNames = Path.Combine(Application.dataPath, _relativeFolder, LAST_NAME_FILE);
         _filePathStories = Path.Combine(Application.dataPath, _relativeFolder, STORIES_FILE);
         _filePathAcronyms = Path.Combine(Application.dataPath, _relativeFolder, ACRONYM_FILE);
+        _filePathJobs = Path.Combine(Application.dataPath, _relativeFolder, JOBS_FILE);
 
         try
         {
@@ -107,6 +112,14 @@ public class JsonReader : MonoBehaviour
             else
             {
                 Debug.LogError($"File dont exist: {_filePathAcronyms}");
+            }
+            if (File.Exists(_filePathJobs))
+            {
+                _jobsList = JsonConvert.DeserializeObject<List<Jobs>>(File.ReadAllText(_filePathJobs));
+            }
+            else
+            {
+                Debug.LogError($"File dont exist: {_filePathJobs}");
             }
         }
         catch (Exception e)

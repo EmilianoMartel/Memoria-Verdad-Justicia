@@ -9,9 +9,10 @@ public class ViewPortRecord : MonoBehaviour
     [Header("View")]
     [SerializeField] private Image _photo;
     [SerializeField] private TMPro.TMP_Text  _nameText;
-    [SerializeField] private TMPro.TMP_Text  _lastName;
-    [SerializeField] private TMPro.TMP_Text  _politicParty;
-    [SerializeField] private TMPro.TMP_Text  _backstory;
+    [SerializeField] private TMPro.TMP_Text  _lastNameText;
+    [SerializeField] private TMPro.TMP_Text  _politicPartyText;
+    [SerializeField] private TMPro.TMP_Text _jobsText;
+    [SerializeField] private TMPro.TMP_Text  _backstoryText;
     [Header("Managers")]
     [SerializeField] private RandomiseFile _randomiser;
 
@@ -38,8 +39,9 @@ public class ViewPortRecord : MonoBehaviour
     private void ShowFile(RecordFile file)
     {
         _nameText.text = file.name;
-        _lastName.text = file.lastName;
-        _politicParty.text = file.politicalPartyName;
-        _backstory.text = file.background;
+        _lastNameText.text = file.lastName;
+        _politicPartyText.text = file.politicalPartyName;
+        _backstoryText.text = file.background;
+        _jobsText.text = file.job;
     }
 }
