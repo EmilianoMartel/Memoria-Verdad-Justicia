@@ -9,6 +9,10 @@ public class ActiveMatchView : MonoBehaviour
     [SerializeField] private GameObject _sprite;
     [SerializeField] private GameLogic _gameManager;
 
+    [SerializeField] private CompareForm _compareForm;
+    [SerializeField] private Color _clickedColor;
+    [SerializeField] private Color _normalColor;
+
     private void OnEnable()
     {
         _gameManager.infoEvent += HandleActive;

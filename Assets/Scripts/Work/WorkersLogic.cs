@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -19,16 +20,29 @@ public class WorkersLogic : MonoBehaviour
     [Header("Managers")]
     [SerializeField] private float _waitForData = 0.5f;
     [SerializeField] private ListSO _dataSO;
+    [SerializeField] private GameLogic _gameLogic;
 
-    struct JobsSituation
+    private struct JobState
     {
         public string name;
         public int actualWorkers;
     }
 
-    private List<JobsSituation> _jobsList = new List<JobsSituation>();
+    private List<JobState> _jobsDic = new List<JobState>();
 
     public Action<string, int, int> jobSetEvent;
+    public Action incrementChance;
+    public Action<string,int> jobState;
+
+    private void OnEnable()
+    {
+        _gameLogic.newWave += HandleNextWave;
+    }
+
+    private void OnDisable()
+    {
+        _gameLogic.newWave -= HandleNextWave;
+    }
 
     private void Awake()
     {
@@ -47,11 +61,75 @@ public class WorkersLogic : MonoBehaviour
 
     private IEnumerator SetJobsList()
     {
-        yield return new WaitForSeconds( _waitForData );
+        yield return new WaitForSeconds(_waitForData);
         for (int i = 0; i < _dataSO.jobs.Count; i++)
         {
             int amount = UnityEngine.Random.Range(_minWorkerStar, _maxWorkerStar);
-            jobSetEvent?.Invoke(_dataSO.jobs[i].job,amount,_maxWorkers);
+            jobSetEvent?.Invoke(_dataSO.jobs[i].job, amount, _maxWorkers);
+            JobState jobState = new JobState();
+            jobState.name = _dataSO.jobs[i].job;
+            jobState.actualWorkers = amount;
+            _jobsDic.Add(jobState);
+        }
+    }
+
+    public bool ContainsAndSumWorker(string work)
+    {
+        for (int i = 0; i < _jobsDic.Count; i++)
+        {
+            if (_jobsDic[i].name == work)
+            {
+                JobState jobTemp = new JobState();
+                jobTemp.actualWorkers = _jobsDic[i].actualWorkers + 1;
+                jobTemp.name = _jobsDic[i].name;
+                _jobsDic[i] = jobTemp;
+                if (_jobsDic[i].actualWorkers > _maxWorkers)
+                {
+                    incrementChance?.Invoke();
+                }
+                string messegae = _jobsDic[i].name + " " + _jobsDic[i].actualWorkers + "/" + _maxWorkers;
+                jobState?.Invoke(messegae, i);
+                Debug.Log("enviado");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void HandleNextWave()
+    {
+        for (int i = 0; i < _jobsDic.Count; i++)
+        {
+            int earningChance = UnityEngine.Random.Range(0, 100);
+            int loosingChance = UnityEngine.Random.Range(0, 100);
+            JobState jobTemp = new JobState();
+            if (earningChance <= _chanceEarningWorker)
+            {
+                if (_jobsDic[i].actualWorkers <= _maxWorkers)
+                {
+                    int amount = UnityEngine.Random.Range(_minAmountEartingnWorker, _maxAmountEarningWorker);
+                    jobTemp.actualWorkers = _jobsDic[i].actualWorkers + amount;
+                    jobTemp.name = _jobsDic[i].name;
+                    _jobsDic[i] = jobTemp;
+                }
+            }
+            if (loosingChance <= _chanceLosingWorker)
+            {
+                if (_jobsDic[i].actualWorkers > 0)
+                {
+                    int amount = UnityEngine.Random.Range(_minAmountLosingWorker, _maxAmountLosingWorker);
+                    jobTemp.actualWorkers = _jobsDic[i].actualWorkers - amount;
+                    jobTemp.name = _jobsDic[i].name;
+                    
+                    if (_jobsDic[i].actualWorkers < 0)
+                    {
+                        jobTemp.actualWorkers = 0;
+                    }
+                    _jobsDic[i] = jobTemp;
+                }
+            }
+            string messegae = _jobsDic[i].name + " " + _jobsDic[i].actualWorkers + "/" + _maxWorkers;
+            jobState?.Invoke(messegae, i);
         }
     }
 }

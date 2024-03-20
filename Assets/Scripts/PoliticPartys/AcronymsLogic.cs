@@ -71,4 +71,13 @@ public class AcronymsLogic : MonoBehaviour
 
         return uniqueNumbers;
     }
+
+    public bool ContainsAcronyms(string politicPartyName)
+    {
+        if (acronyms.Contains(politicPartyName))
+        {
+            return true;
+        }
+        return false;
+    }
 }

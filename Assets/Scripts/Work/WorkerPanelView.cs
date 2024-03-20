@@ -14,11 +14,13 @@ public class WorkerPanelView : MonoBehaviour
     private void OnEnable()
     {
         _workLogic.jobSetEvent += HandleWorks;
+        _workLogic.jobState += HandleActualWorkers;
     }
 
     private void OnDisable()
     {
         _workLogic.jobSetEvent -= HandleWorks;
+        _workLogic.jobState -= HandleActualWorkers;
     }
 
     private void Awake()
@@ -33,11 +35,20 @@ public class WorkerPanelView : MonoBehaviour
 
     private void HandleWorks(string job, int actualAmount, int maxAmount)
     {
-        if (indexCount > _textList.Count)
+        if (indexCount >= _textList.Count)
         {
             indexCount = 0;
         }
         _textList[indexCount].text = job + " " + actualAmount + "/" + maxAmount;
         indexCount++;
+    }
+
+    private void HandleActualWorkers(string job, int index)
+    {
+        if (index >= _textList.Count || index < 0)
+        {
+            return;
+        }
+        _textList[index].text = job;
     }
 }

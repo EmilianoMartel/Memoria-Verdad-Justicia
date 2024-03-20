@@ -100,4 +100,24 @@ public class RandomiseFile : MonoBehaviour
             sendFile?.Invoke(_fileList[index]);
         }
     }
+
+    public string ActualPoliticParty(int index)
+    {
+        if (index < 0 || _fileList.Count < index)
+        {
+            Debug.LogError($"{name} index error.");
+            return "";
+        }
+        return _fileList[index].politicalPartyName;
+    }
+
+    public string ActualWork(int index)
+    {
+        if (index < 0 || _fileList.Count < index)
+        {
+            Debug.LogError($"{name} index error.");
+            return "";
+        }
+        return _fileList[index].job;
+    }
 }
