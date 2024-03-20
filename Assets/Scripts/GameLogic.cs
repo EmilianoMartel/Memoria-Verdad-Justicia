@@ -6,10 +6,23 @@ using UnityEngine;
 public class GameLogic : MonoBehaviour
 {
     [SerializeField] private float _waitForManager = 1f;
-
+    [SerializeField] private ButtonsLogic _buttonsLogic;
     private int index = 0;
 
     public Action<int> newFile;
+    public Action<bool> infoEvent;
+
+    private void OnEnable()
+    {
+        _buttonsLogic.free += NewFileText;
+        _buttonsLogic.info += HandleActiveInfo;
+    }
+
+    private void OnDisable()
+    {
+        _buttonsLogic.free -= NewFileText;
+        _buttonsLogic.info -= HandleActiveInfo;
+    }
 
     private void Start()
     {
@@ -29,4 +42,14 @@ public class GameLogic : MonoBehaviour
         index++;
     }
 
+
+    private void HandleActiveInfo()
+    {
+        infoEvent?.Invoke(true);
+    }
+
+    private void HandleDesactiveInfo()
+    {
+        infoEvent?.Invoke(false);
+    }
 }

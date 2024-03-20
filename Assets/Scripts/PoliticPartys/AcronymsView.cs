@@ -2,42 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class WorkerPanelView : MonoBehaviour
+public class AcronymsView : MonoBehaviour
 {
-    [SerializeField] private WorkersLogic _workLogic;
+    [SerializeField] private AcronymsLogic _acronymsLogic;
     [SerializeField] private List<TMPro.TMP_Text> _textList = new List<TMP_Text>();
 
     private int indexCount = 0;
 
+
     private void OnEnable()
     {
-        _workLogic.jobSetEvent += HandleWorks;
+        _acronymsLogic.setAcronyms += HandleAcronyms;
     }
 
     private void OnDisable()
     {
-        _workLogic.jobSetEvent -= HandleWorks;
+        _acronymsLogic.setAcronyms -= HandleAcronyms;
     }
 
     private void Awake()
     {
-        if (!_workLogic)
+        if (!_acronymsLogic)
         {
-            Debug.LogError($"{name}: WorkLogic is null.\nCheck and assigned one.\nDisabled component.");
+            Debug.LogError($"{name}: AcronymsLogic is null.\nCheck and assigned one.\nDisabled component.");
             enabled = false;
             return;
         }
     }
 
-    private void HandleWorks(string job, int actualAmount, int maxAmount)
+    private void HandleAcronyms(string name)
     {
         if (indexCount > _textList.Count)
         {
             indexCount = 0;
         }
-        _textList[indexCount].text = job + " " + actualAmount + "/" + maxAmount;
+        _textList[indexCount].text = name;
         indexCount++;
     }
 }
