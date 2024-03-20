@@ -44,7 +44,7 @@ public class GameLogic : MonoBehaviour
     public Action<bool> infoEvent;
     public Action<Ends> endGame;
     public Action newWave;
-
+    public Action startWave;
 
     private void OnEnable()
     {
@@ -67,6 +67,7 @@ public class GameLogic : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartFile());
+        startWave?.Invoke();
     }
 
     private IEnumerator StartFile()
@@ -143,6 +144,7 @@ public class GameLogic : MonoBehaviour
             _actualWave++;
             _actualFile = 0;
             newWave?.Invoke();
+            startWave?.Invoke();
         }
         EndGame();
     }

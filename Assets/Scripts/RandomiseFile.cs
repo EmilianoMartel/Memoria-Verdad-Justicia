@@ -19,11 +19,13 @@ public class RandomiseFile : MonoBehaviour
     private void OnEnable()
     {
         _gameLogic.newFile += SendFile;
+        _gameLogic.newWave += NewWave;
     }
 
     private void OnDisable()
     {
         _gameLogic.newFile -= SendFile;
+        _gameLogic.newWave -= NewWave;
     }
 
     private void Awake()
@@ -119,5 +121,10 @@ public class RandomiseFile : MonoBehaviour
             return "";
         }
         return _fileList[index].job;
+    }
+
+    private void NewWave()
+    {
+        StartCoroutine(GenerateList());
     }
 }
