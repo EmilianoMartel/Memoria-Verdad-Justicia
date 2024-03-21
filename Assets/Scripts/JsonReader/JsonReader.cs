@@ -46,7 +46,7 @@ public class JsonReader : MonoBehaviour
     [SerializeField] private string JOBS_FILE = "Jobs.json";
     [Header("Data Source")]
     [SerializeField] private ListSO _dataSource;
-    private static string _relativeFolder = "Data";
+    private static string _relativeFolder = "StreamingAssets";
     private string _filePathNames;
     private string _filePathLastNames;
     private string _filePathStories;
