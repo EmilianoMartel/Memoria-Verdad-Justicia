@@ -18,7 +18,8 @@ public class LastNames
 
 public class Stories
 {
-    public string story;
+    public string male;
+    public string female;
 }
 
 public class Acronyms

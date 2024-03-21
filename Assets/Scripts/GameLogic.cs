@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.ParticleSystem;
 
 public enum Ends
@@ -15,10 +16,11 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private float _waitForManager = 1f;
     [Header("Managers")]
     [SerializeField] private ButtonsLogic _buttonsLogic;
-    [SerializeField] private InfoLogic _infoLogic;
     [SerializeField] private AcronymsLogic _acronymsLogic;
     [SerializeField] private RandomiseFile _files;
     [SerializeField] private WorkersLogic _workersLogic;
+    [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private FianlSO _final;
     private int _actualIndex = -1;
     private int index = 0;
 
@@ -28,6 +30,8 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private int _maxPeploSaveAmount = 1;
     [SerializeField] private float _captureChance = 10;
     [SerializeField] private float _percentSavePeopleToWin = 80f;
+    [SerializeField] private string _sceneToChange = "Final";
+    
     private float _actualCaptureChanceFails = 0;
     private float _actualCaptureChanceWorkers = 0;
 
@@ -68,6 +72,7 @@ public class GameLogic : MonoBehaviour
     {
         StartCoroutine(StartFile());
         startWave?.Invoke();
+        _soundManager.PlayAudio();
     }
 
     private IEnumerator StartFile()
@@ -116,14 +121,22 @@ public class GameLogic : MonoBehaviour
 
     private void HandleWork()
     {
-        if (_workersLogic.ContainsAndSumWorker(_files.ActualWork(_actualIndex)))
+        if (!_acronymsLogic.ContainsAcronyms(_files.ActualPoliticParty(_actualIndex)))
         {
-            _peopleToWork++;
         }
         else
         {
-            _peopleToWork++;
+            if (_workersLogic.ContainsAndSumWorker(_files.ActualWork(_actualIndex)))
+            {
+                _peopleToWork++;
+            }
+            else
+            {
+                _fails++;
+                _peopleToWork++;
+            }
         }
+        _totalPeople++;
         newFile?.Invoke(index);
         _actualIndex++;
         index++;
@@ -156,7 +169,8 @@ public class GameLogic : MonoBehaviour
             int temp = UnityEngine.Random.Range(0, 100);
             if (temp <= _actualCaptureChanceFails)
             {
-                endGame?.Invoke(Ends.Capture);
+                _final.ends = Ends.Capture;
+                SceneManager.LoadScene(_sceneToChange);
                 Debug.Log("Capture");
             }
         }
@@ -165,7 +179,8 @@ public class GameLogic : MonoBehaviour
             int temp = UnityEngine.Random.Range(0, 100);
             if (temp <= _actualCaptureChanceFails)
             {
-                endGame?.Invoke(Ends.Capture);
+                _final.ends = Ends.Capture;
+                SceneManager.LoadScene(_sceneToChange);
                 Debug.Log("Capture");
             }
         }
@@ -173,12 +188,14 @@ public class GameLogic : MonoBehaviour
         {
             if ((_savePeople+_peopleToWork)/_totalPeople >= _percentSavePeopleToWin)
             {
-                endGame?.Invoke(Ends.Free);
+                _final.ends = Ends.Free;
+                SceneManager.LoadScene(_sceneToChange);
                 Debug.Log("GoodEnd");
             }
             else
             {
-                endGame?.Invoke(Ends.Judge);
+                _final.ends = Ends.Judge;
+                SceneManager.LoadScene(_sceneToChange);
                 Debug.Log("Judge");
             }
         }

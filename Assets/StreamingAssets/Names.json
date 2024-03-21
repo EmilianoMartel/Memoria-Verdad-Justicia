@@ -1,13 +1,26 @@
 [
-      {"name": "Juan", "gender": "male"},
-      {"name": "Maria", "gender": "female"},
-      {"name": "David", "gender": "male"},
-      {"name": "Emilia", "gender": "female"},
-      {"name": "Miguel", "gender": "male"},
-      {"name": "Silvia", "gender": "female"},
-      {"name": "Walter", "gender": "male"},
-      {"name": "Emma", "gender": "female"},
-      {"name": "Javier", "gender": "male"},
-      {"name": "Olivia", "gender": "female"}
-
-    ]
+  {"name": "Carlos", "gender": "male"},
+  {"name": "Marcelo", "gender": "male"},
+  {"name": "Jorge", "gender": "male"},
+  {"name": "Juan", "gender": "male"},
+  {"name": "Gustavo", "gender": "male"},
+  {"name": "Daniel", "gender": "male"},
+  {"name": "Claudio", "gender": "male"},
+  {"name": "Alejandro", "gender": "male"},
+  {"name": "José", "gender": "male"},
+  {"name": "Sergio", "gender": "male"},
+  {"name": "Diego", "gender": "male"},
+  {"name": "Ricardo", "gender": "male"},
+  {"name": "Eduardo", "gender": "male"},
+  {"name": "Roberto", "gender": "male"},
+  {"name": "María", "gender": "female"},
+  {"name": "Graciela", "gender": "female"},
+  {"name": "Silvia", "gender": "female"},
+  {"name": "Ana", "gender": "female"},
+  {"name": "Liliana", "gender": "female"},
+  {"name": "Susana", "gender": "female"},
+  {"name": "Alicia", "gender": "female"},
+  {"name": "Marta", "gender": "female"},
+  {"name": "Mirta", "gender": "female"},
+  {"name": "Mónica", "gender": "female"}
+]

@@ -1,7 +1,9 @@
 [
-    {"story": "Once upon a time, there was a brave knight who saved the kingdom from a fierce dragon."},
-    {"story": "In a distant galaxy, a group of adventurers embarked on a perilous journey to find a legendary treasure."},
-    {"story": "Amelia woke up one morning to find herself in a mysterious forest, unsure of how she got there."},
-    {"story": "After years of searching, the archaeologist finally uncovered the lost city buried beneath the desert sands."},
-    {"story": "As the storm raged outside, Sarah curled up with a book by the fireplace, lost in a world of fantasy."}
+    {"male": "Sospechoso de participar en la militancia política, tiene 25 años y se junta en el bar La Luna los martes y jueves con otras dos personas.","female":"Sospechosa de participar en la militancia política, tiene 25 años y se junta en el bar La Luna los martes y jueves con otras dos personas."},
+    {"male": "Un hombre sospechoso en general, su rutina es muy poco disciplinaria, visita distintos bares de la ciudad y siempre sale con algo de ellos.","female":"Una mujer sospechosa en general, su rutina es muy poco disciplinaria, visita distintos bares de la ciudad y siempre sale con algo de ellos."},
+    {"male": "Un hombre normal, a simple vista nadie sospecharía de él pero los resultados de nuestros interrogatorios lo apuntan como sospechoso.","female":"Una mujer normal, a simple vista nadie sospecharía de ella pero los resultados de nuestros interrogatorios la apuntan como sospechosa."},
+    {"male": "Nuestras fuentes indican que este es un hombre sospechoso, sin embargo, apenas sale de su casa y cuando lo hace es para comprar víveres en los almacenes.","female":"Nuestras fuentes indican que esta es una mujer sospechosa, sin embargo, apenas sale de su casa y cuando lo hace es para comprar víveres en los almacenes."},
+    {"male": "Sospechoso de tener implicancias políticas en la militancia, tiene 31 años y visita siempre los mismos tres lugares en el mismo orden.","female":"Sospechosa de tener implicancias políticas en la militancia, tiene 31 años y visita siempre los mismos tres lugares en el mismo orden."},
+    {"male": "Un pibe de 17 años, dicen que participa del centro de estudiantes y es bastante quilombero.","female":"Una piba de 17 años, dicen que participa del centro de estudiantes y es bastante quilombera."},
+    {"male": "Un profesor de escuela típico, aparentemente no hace nada fuera de lo normal, pero nuestras fuentes indican que es comunista.","female":"Una profesora de escuela típica, aparentemente no hace nada fuera de lo normal, pero nuestras fuentes indican que es comunista."}
 ]

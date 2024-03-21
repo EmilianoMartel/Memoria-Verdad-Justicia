@@ -8,6 +8,7 @@ using UnityEngine;
 public class WorkersLogic : MonoBehaviour
 {
     [Header("Parameters")]
+    [SerializeField] private int _maxJobs = 5;
     [SerializeField] private int _maxWorkers = 10;
     [SerializeField] private int _minWorkerStar = 0;
     [SerializeField] private int _maxWorkerStar = 5;
@@ -62,12 +63,19 @@ public class WorkersLogic : MonoBehaviour
     private IEnumerator SetJobsList()
     {
         yield return new WaitForSeconds(_waitForData);
-        for (int i = 0; i < _dataSO.jobs.Count; i++)
+        RandomJobs();
+    }
+
+    private void RandomJobs()
+    {
+        List<int> list = new List<int>();
+        list = GenerateUniqueRandomNumbers(0, _dataSO.jobs.Count, _maxJobs);
+        for (int i = 0; i < list.Count; i++)
         {
             int amount = UnityEngine.Random.Range(_minWorkerStar, _maxWorkerStar);
-            jobSetEvent?.Invoke(_dataSO.jobs[i].job, amount, _maxWorkers);
+            jobSetEvent?.Invoke(_dataSO.jobs[list[i]].job, amount, _maxWorkers);
             JobState jobState = new JobState();
-            jobState.name = _dataSO.jobs[i].job;
+            jobState.name = _dataSO.jobs[list[i]].job;
             jobState.actualWorkers = amount;
             _jobsDic.Add(jobState);
         }
@@ -131,5 +139,30 @@ public class WorkersLogic : MonoBehaviour
             string messegae = _jobsDic[i].name + " " + _jobsDic[i].actualWorkers + "/" + _maxWorkers;
             jobState?.Invoke(messegae, i);
         }
+    }
+
+    private List<int> GenerateUniqueRandomNumbers(int min, int max, int count)
+    {
+        if (count > (max - min + 1))
+        {
+            throw new ArgumentException("The number of unique numbers cannot be greater than the specified range.");
+        }
+
+        List<int> uniqueNumbers = new List<int>();
+        HashSet<int> generatedNumbers = new HashSet<int>();
+
+
+        while (uniqueNumbers.Count < count)
+        {
+            int randomNumber = UnityEngine.Random.Range(min, max);
+
+            if (!generatedNumbers.Contains(randomNumber))
+            {
+                uniqueNumbers.Add(randomNumber);
+                generatedNumbers.Add(randomNumber);
+            }
+        }
+
+        return uniqueNumbers;
     }
 }

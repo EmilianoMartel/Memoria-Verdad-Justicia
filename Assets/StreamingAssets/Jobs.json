@@ -1,17 +1,32 @@
 [
-  {
-      "job": "Albañil"
-  },
-  {
+    {
+      "job": "Carpintero"
+    },
+    {
       "job": "Electricista"
-  },
-  {
+    },
+    {
+      "job": "Fontanero"
+    },
+    {
+      "job": "Cerrajero"
+    },
+    {
+      "job": "Mecánico"
+    },
+    {
       "job": "Soldador"
-  },
-  {
-      "job": "Serigrafista"
-  },
-  {
+    },
+    {
+      "job": "Albañil"
+    },
+    {
+      "job": "Herrero"
+    },
+    {
       "job": "Cocinero"
-  }
-]
+    },
+    {
+      "job": "Serigrafista"
+    },
+  ]

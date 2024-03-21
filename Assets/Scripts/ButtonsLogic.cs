@@ -9,7 +9,7 @@ public class ButtonsLogic : MonoBehaviour
     [SerializeField] private Button _intButton;
     [SerializeField] private Button _refButton;
     [SerializeField] private Button _indifButton;
-    [SerializeField] private Button _infoButton;
+    [SerializeField] private List<SoundManager> _soundManager = new List<SoundManager>();
 
     public Action free;
     public Action capture;
@@ -21,7 +21,6 @@ public class ButtonsLogic : MonoBehaviour
         _intButton.onClick.AddListener(CaptureEvent);
         _refButton.onClick.AddListener(NewWorkerEvent);
         _indifButton.onClick.AddListener(FreeEvent);
-        _infoButton.onClick.AddListener(InfoEvent);
     }
 
     private void OnDisable()
@@ -29,26 +28,33 @@ public class ButtonsLogic : MonoBehaviour
         _intButton.onClick.RemoveListener(CaptureEvent);
         _refButton.onClick.RemoveListener(NewWorkerEvent);
         _indifButton.onClick.RemoveListener(FreeEvent);
-        _infoButton?.onClick?.RemoveListener(InfoEvent);
     }
 
     private void CaptureEvent()
     {
+        PlaySound();
         capture?.Invoke();
     }
 
     private void NewWorkerEvent()
     {
+        PlaySound();
         newWorker?.Invoke();
     }
 
     private void FreeEvent()
     {
+        PlaySound();
         free?.Invoke();
     }
 
-    private void InfoEvent()
+    private void PlaySound()
     {
-        info?.Invoke();
+        int index = UnityEngine.Random.Range(0, _soundManager.Count);
+        if (index >= 0 && index < _soundManager.Count)
+        {
+            _soundManager[index].PlayAudio();
+        }
+        
     }
 }
