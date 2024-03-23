@@ -11,7 +11,6 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private GameObject _jobs;
     [SerializeField] private GameObject _panel;
     [SerializeField] private List<GameObject> _buttonList;
-    [SerializeField] private GameObject _introPanel;
 
     [SerializeField] private List<string> _tutorialList;
 

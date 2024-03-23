@@ -1312,6 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38363f2715cbf0244aece858cd8cba4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waitForChange: 0.5
 --- !u!114 &596545959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,6 +1367,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Menu
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1968616187}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &596545960
@@ -1868,8 +1881,8 @@ AudioSource:
   m_GameObject: {fileID: 749128406}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 891ea06434b88a84bb725ee8008349dd, type: 3}
+  OutputAudioMixerGroup: {fileID: 2483407610818127077, guid: d77422c312c395443bbe78ae021e10c4, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 2ccfc52a0802d3f44b48c2ef30afa27e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2830,7 +2843,6 @@ MonoBehaviour:
   - {fileID: 1445364278}
   - {fileID: 1278461405}
   - {fileID: 1166403566}
-  _introPanel: {fileID: 0}
   _tutorialList:
   - "Proyecto de infiltraci\xF3n, tu misi\xF3n: rescatar a la mayor\xEDa de personas
     en manos de los militares dentro de ESMA sin ser descubierto, las decisiones
@@ -4855,6 +4867,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859279653}
   m_CullTransparentMesh: 1
+--- !u!114 &1968616187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3500401566848644953, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+  m_PrefabInstance: {fileID: 4172362820891638459}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77f01a515d7be149a0cc6ad55361ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2006194069
 GameObject:
   m_ObjectHideFlags: 0
@@ -5726,6 +5749,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1968616187}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2117566162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6136,6 +6171,63 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1001 &4172362820891638459
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 34.26909
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 258.49896
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.4915333
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 963526344634961448, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812347452043515508, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
+      propertyPath: m_Name
+      value: Sound
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a2b161a75b132542ac1851c6964ea70, type: 3}
 --- !u!1001 &6776024273917546333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6271,3 +6363,4 @@ SceneRoots:
   - {fileID: 1060522428}
   - {fileID: 749128409}
   - {fileID: 1148908908}
+  - {fileID: 4172362820891638459}
